@@ -7,26 +7,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Reset & base */
+    /* Reset */
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
-    body { line-height:1.6; background:#f9f9f9; color:#333; }
-    a { text-decoration:none; color: inherit; }
+    html { scroll-behavior: smooth; }
+    body { line-height:1.6; background:#f4f4f9; color:#333; }
 
     /* Navbar */
-    header { background:#111; color:#fff; padding:1rem 2rem; position:sticky; top:0; z-index:999; display:flex; justify-content:space-between; align-items:center; }
+    header { position:fixed; top:0; width:100%; background:#111; color:#fff; padding:1rem 2rem; z-index:1000; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
     header h1 { font-size:1.5rem; letter-spacing:1px; }
     nav a { margin-left:2rem; font-weight:500; transition:0.3s; }
     nav a:hover { color:#ff6b6b; }
 
-    /* Hero Section */
+    /* Hero */
     .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat; color:#fff; }
-    .hero h2 { font-size:2.5rem; margin-bottom:1rem; }
-    .hero p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; }
+    .hero h2 { font-size:3rem; margin-bottom:1rem; opacity:0; transform:translateY(-20px); animation:fadeInUp 1s forwards 0.5s; }
+    .hero p { font-size:1.2rem; max-width:600px; margin-bottom:2rem; opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards 1s; }
     .btn-primary { background:#ff6b6b; padding:0.8rem 1.5rem; border:none; color:#fff; font-weight:500; border-radius:5px; cursor:pointer; transition:0.3s; }
     .btn-primary:hover { background:#ff4757; }
 
+    @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+
     /* Sections */
-    section { padding:6rem 2rem; max-width:1100px; margin:0 auto; }
+    section { padding:6rem 2rem; max-width:1100px; margin:0 auto; opacity:0; transform:translateY(50px); transition:0.8s; }
+    section.visible { opacity:1; transform:translateY(0); }
     h2.section-title { text-align:center; margin-bottom:3rem; font-size:2rem; color:#111; }
 
     /* About */
@@ -36,10 +39,16 @@
     .about-text p { margin-bottom:1rem; }
 
     /* Skills */
-    .skills { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; }
-    .skill { background:#fff; padding:1rem 1.5rem; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); font-weight:500; }
+    .skills { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem; }
+    .skill { background:#fff; padding:1rem; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); }
+    .skill .skill-name { font-weight:500; margin-bottom:0.5rem; }
+    .skill-bar { height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+    .skill-bar span { display:block; height:100%; width:0; background:#ff6b6b; border-radius:5px; transition:1s; }
 
     /* Projects */
+    .project-filters { text-align:center; margin-bottom:2rem; }
+    .project-filters button { margin:0 0.5rem; padding:0.5rem 1rem; border:none; border-radius:5px; cursor:pointer; background:#eee; transition:0.3s; }
+    .project-filters button.active, .project-filters button:hover { background:#ff6b6b; color:#fff; }
     .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:2rem; }
     .project { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:0.3s; }
     .project img { width:100%; display:block; }
@@ -47,10 +56,9 @@
     .project-content h3 { margin-bottom:0.5rem; }
     .project-content p { font-size:0.95rem; color:#555; }
     .project-content a { margin-top:0.5rem; display:inline-block; color:#ff6b6b; font-weight:500; }
-
     .project:hover { transform:translateY(-5px); }
 
-    /* Experience */
+    /* Timeline */
     .timeline { position:relative; margin:2rem 0; }
     .timeline::after { content:''; position:absolute; left:50%; top:0; bottom:0; width:4px; background:#ff6b6b; transform:translateX(-50%); }
     .timeline-item { padding:1rem 2rem; position:relative; width:50%; }
@@ -97,7 +105,7 @@
   <!-- Hero -->
   <section class="hero">
     <h2>Full-Stack PHP Developer</h2>
-    <p>Building scalable web applications and modern responsive websites with PHP, CodeIgniter, Laravel, MySQL, React, and AWS.</p>
+    <p>Building scalable web applications and modern responsive websites with PHP, Laravel, CodeIgniter, React, and AWS.</p>
     <a href="#contact" class="btn-primary">Hire Me</a>
   </section>
 
@@ -116,24 +124,27 @@
 
   <!-- Skills -->
   <section id="skills">
-    <h2 class="section-title">My Skills</h2>
+    <h2 class="section-title">Skills</h2>
     <div class="skills">
-      <div class="skill">PHP | CodeIgniter | Laravel</div>
-      <div class="skill">MySQL | MongoDB</div>
-      <div class="skill">HTML | CSS | JavaScript</div>
-      <div class="skill">React | React Native</div>
-      <div class="skill">REST APIs & Integration</div>
-      <div class="skill">AWS | Cloud Deployment</div>
-      <div class="skill">Git | CI/CD</div>
-      <div class="skill">Agile Development</div>
+      <div class="skill"><div class="skill-name">PHP | Laravel</div><div class="skill-bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><div class="skill-name">CodeIgniter</div><div class="skill-bar"><span style="width:85%"></span></div></div>
+      <div class="skill"><div class="skill-name">MySQL | MongoDB</div><div class="skill-bar"><span style="width:90%"></span></div></div>
+      <div class="skill"><div class="skill-name">React | React Native</div><div class="skill-bar"><span style="width:75%"></span></div></div>
+      <div class="skill"><div class="skill-name">AWS</div><div class="skill-bar"><span style="width:70%"></span></div></div>
     </div>
   </section>
 
   <!-- Projects -->
   <section id="projects">
     <h2 class="section-title">Projects</h2>
+    <div class="project-filters">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="web">Web</button>
+      <button data-filter="mobile">Mobile</button>
+      <button data-filter="saas">SaaS</button>
+    </div>
     <div class="projects">
-      <div class="project">
+      <div class="project" data-category="web">
         <img src="https://via.placeholder.com/600x400" alt="Project 1">
         <div class="project-content">
           <h3>C-Note Tax Solutions</h3>
@@ -141,7 +152,7 @@
           <a href="#">View Project</a>
         </div>
       </div>
-      <div class="project">
+      <div class="project" data-category="mobile">
         <img src="https://via.placeholder.com/600x400" alt="Project 2">
         <div class="project-content">
           <h3>Ploto Media Platform</h3>
@@ -149,7 +160,7 @@
           <a href="#">View Project</a>
         </div>
       </div>
-      <div class="project">
+      <div class="project" data-category="saas">
         <img src="https://via.placeholder.com/600x400" alt="Project 3">
         <div class="project-content">
           <h3>CRM SaaS Application</h3>
@@ -198,5 +209,45 @@
     <p>© 2026 Pallavi Shrivastav | <a href="https://github.com/pallavi-shrivastav" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/pallavishrivastav" target="_blank">LinkedIn</a></p>
   </footer>
 
+  <script>
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold:0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    // Animate skill bars
+    const skills = document.querySelectorAll('.skill-bar span');
+    window.addEventListener('scroll', () => {
+      skills.forEach(skill => {
+        const rect = skill.getBoundingClientRect();
+        if(rect.top < window.innerHeight) skill.style.width = skill.style.width || skill.getAttribute('style');
+      });
+    });
+
+    // Project Filtering
+    const filterBtns = document.querySelectorAll('.project-filters button');
+    const projects = document.querySelectorAll('.project');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        projects.forEach(p => {
+          if(filter === 'all' || p.getAttribute('data-category') === filter) {
+            p.style.display = 'block';
+          } else {
+            p.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
