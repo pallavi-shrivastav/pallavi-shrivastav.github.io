@@ -3,145 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pallavi Jayprakash Shrivastav | Full-Stack PHP Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Pallavi Shrivastav | Full-Stack PHP Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
+    /* Reset & base */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
+    body { line-height:1.6; background:#f9f9f9; color:#333; }
+    a { text-decoration:none; color: inherit; }
+
+    /* Navbar */
+    header { background:#111; color:#fff; padding:1rem 2rem; position:sticky; top:0; z-index:999; display:flex; justify-content:space-between; align-items:center; }
+    header h1 { font-size:1.5rem; letter-spacing:1px; }
+    nav a { margin-left:2rem; font-weight:500; transition:0.3s; }
+    nav a:hover { color:#ff6b6b; }
+
+    /* Hero Section */
+    .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat; color:#fff; }
+    .hero h2 { font-size:2.5rem; margin-bottom:1rem; }
+    .hero p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; }
+    .btn-primary { background:#ff6b6b; padding:0.8rem 1.5rem; border:none; color:#fff; font-weight:500; border-radius:5px; cursor:pointer; transition:0.3s; }
+    .btn-primary:hover { background:#ff4757; }
+
+    /* Sections */
+    section { padding:6rem 2rem; max-width:1100px; margin:0 auto; }
+    h2.section-title { text-align:center; margin-bottom:3rem; font-size:2rem; color:#111; }
+
+    /* About */
+    .about { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+    .about img { flex:1 1 300px; border-radius:10px; max-width:100%; }
+    .about-text { flex:2 1 400px; }
+    .about-text p { margin-bottom:1rem; }
+
+    /* Skills */
+    .skills { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; }
+    .skill { background:#fff; padding:1rem 1.5rem; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); font-weight:500; }
+
+    /* Projects */
+    .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:2rem; }
+    .project { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:0.3s; }
+    .project img { width:100%; display:block; }
+    .project-content { padding:1rem; }
+    .project-content h3 { margin-bottom:0.5rem; }
+    .project-content p { font-size:0.95rem; color:#555; }
+    .project-content a { margin-top:0.5rem; display:inline-block; color:#ff6b6b; font-weight:500; }
+
+    .project:hover { transform:translateY(-5px); }
+
+    /* Experience */
+    .timeline { position:relative; margin:2rem 0; }
+    .timeline::after { content:''; position:absolute; left:50%; top:0; bottom:0; width:4px; background:#ff6b6b; transform:translateX(-50%); }
+    .timeline-item { padding:1rem 2rem; position:relative; width:50%; }
+    .timeline-item.left { left:0; text-align:right; }
+    .timeline-item.right { left:50%; }
+    .timeline-item::before { content:''; position:absolute; width:15px; height:15px; border-radius:50%; background:#ff6b6b; top:15px; z-index:1; }
+    .timeline-item.left::before { right:-8px; }
+    .timeline-item.right::before { left:-8px; }
+
+    /* Contact */
+    .contact-form { display:flex; flex-direction:column; gap:1rem; max-width:600px; margin:0 auto; }
+    .contact-form input, .contact-form textarea { padding:1rem; border:1px solid #ccc; border-radius:5px; font-size:1rem; }
+    .contact-form button { background:#ff6b6b; padding:0.8rem 1.5rem; border:none; color:#fff; font-weight:500; border-radius:5px; cursor:pointer; transition:0.3s; }
+    .contact-form button:hover { background:#ff4757; }
+
+    /* Footer */
+    footer { background:#111; color:#fff; text-align:center; padding:2rem; }
+    footer a { color:#ff6b6b; margin:0 0.5rem; }
+
+    /* Responsive */
+    @media(max-width:768px) {
+      .about { flex-direction:column; }
+      .timeline::after { left:20px; }
+      .timeline-item { width:100%; padding-left:40px; padding-right:20px; text-align:left; }
+      .timeline-item.left, .timeline-item.right { left:0; }
+      .timeline-item::before { left:0; }
     }
-    a { color: #007BFF; text-decoration: none; }
-    header {
-      background: #007BFF;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    header h1 { margin: 0; font-size: 2rem; }
-    header p { margin: 0.5rem 0; font-size: 1rem; }
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-    h2 { color: #007BFF; margin-top: 0; }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 0.5rem; }
-    .contact-info { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .contact-info div { flex: 1; min-width: 200px; }
-    .projects, .experience, .skills, .education, .certifications, .interests { margin-top: 1rem; }
-    .project-link { font-style: italic; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Navbar -->
   <header>
-    <h1>Pallavi Jayprakash Shrivastav</h1>
-    <p>Full-Stack PHP Developer | 5+ Years Experience | Remote-Ready</p>
-    <div class="contact-info">
-      <div>Email: <a href="mailto:pallavi.svta7@gmail.com">pallavi.svta7@gmail.com</a></div>
-      <div>Phone: +91 98249 32234</div>
-      <div>Location: Surat, Gujarat, India</div>
-    </div>
+    <h1>Pallavi Shrivastav</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- Professional Summary -->
-  <section class="summary">
-    <h2>Professional Summary</h2>
-    <p>Results-driven Full-Stack PHP Developer with 5+ years of experience in web application development using PHP, CodeIgniter, Laravel, and React Native. Proven expertise in building scalable and secure applications, leading agile teams, and managing international clients. Strong skills in API development, performance optimization, and cross-functional collaboration. Seeking remote or freelance opportunities to contribute to innovative and impactful tech products.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Full-Stack PHP Developer</h2>
+    <p>Building scalable web applications and modern responsive websites with PHP, CodeIgniter, Laravel, MySQL, React, and AWS.</p>
+    <a href="#contact" class="btn-primary">Hire Me</a>
   </section>
 
-  <!-- Technical Skills -->
-  <section class="skills">
-    <h2>Technical Skills</h2>
-    <ul>
-      <li><strong>Languages & Web Technologies:</strong> PHP, JavaScript, HTML5, CSS3, jQuery, AJAX</li>
-      <li><strong>Frameworks & Libraries:</strong> CodeIgniter, Laravel, React Native</li>
-      <li><strong>Database:</strong> MySQL</li>
-      <li><strong>Tools & Platforms:</strong> REST APIs, MVC Architecture, Git, VS Code, Postman, Jira</li>
-      <li><strong>Soft Skills:</strong> Team Leadership, Client Communication, Requirement Analysis</li>
-    </ul>
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <img src="https://avatars.githubusercontent.com/u/youravatar.png" alt="Pallavi Shrivastav">
+      <div class="about-text">
+        <p>Hello! I’m Pallavi Shrivastav, a passionate Full-Stack PHP Developer with 6+ years of experience in building high-quality web applications. I specialize in PHP frameworks like CodeIgniter and Laravel, front-end technologies, and cloud deployment on AWS.</p>
+        <p>I enjoy solving complex problems, optimizing performance, and creating seamless user experiences. Let’s build something amazing together!</p>
+        <a href="#contact" class="btn-primary">Get In Touch</a>
+      </div>
+    </div>
   </section>
 
-  <!-- Professional Experience -->
-  <section class="experience">
-    <h2>Professional Experience</h2>
-    <ul>
-      <li><strong>PHP Developer – Quicoo Pvt Ltd</strong> (Aug 2025 – Present)</li>
-      <li><strong>Software Developer 3 (Senior Associate) – Kareva Techsol</strong> (Feb 2024 – July 2025)
-        <ul>
-          <li>Developed scalable, secure web applications using CodeIgniter and MySQL</li>
-          <li>Refactored legacy codebase to improve performance by 30%</li>
-          <li>Worked with cross-functional teams to gather requirements and deliver tailored solutions</li>
-        </ul>
-      </li>
-      <li><strong>Senior Developer – Netsol IT Solution</strong> (Jun 2022 – Jan 2024)
-        <ul>
-          <li>Led development of “Ploto,” a US-based media campaign platform</li>
-          <li>Managed sprint planning, team coordination, and code reviews</li>
-          <li>Acted as primary point of contact between client and internal teams</li>
-        </ul>
-      </li>
-      <li><strong>Junior Developer – Netsol IT Solution</strong> (Jun 2020 – May 2022)
-        <ul>
-          <li>Built responsive front-end interfaces using AJAX, jQuery, HTML5</li>
-          <li>Managed full lifecycle development of multiple client projects</li>
-        </ul>
-      </li>
-      <li><strong>Trainee PHP Developer – Netsol IT Solution</strong> (Sep 2019 – May 2020)
-        <ul>
-          <li>Contributed to React Native and Laravel-based projects</li>
-          <li>Created internal APIs and modules under mentorship</li>
-          <li>Developed a core PHP project independently</li>
-        </ul>
-      </li>
-    </ul>
+  <!-- Skills -->
+  <section id="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills">
+      <div class="skill">PHP | CodeIgniter | Laravel</div>
+      <div class="skill">MySQL | MongoDB</div>
+      <div class="skill">HTML | CSS | JavaScript</div>
+      <div class="skill">React | React Native</div>
+      <div class="skill">REST APIs & Integration</div>
+      <div class="skill">AWS | Cloud Deployment</div>
+      <div class="skill">Git | CI/CD</div>
+      <div class="skill">Agile Development</div>
+    </div>
   </section>
 
-  <!-- Key Projects -->
-  <section class="projects">
-    <h2>Key Projects</h2>
-    <ul>
-      <li><strong>C-Note Tax Solutions Inc.</strong> – Canadian tax filing platform built with PHP and CodeIgniter. <a href="https://cnotetax.ca" target="_blank" class="project-link">cnotetax.ca</a></li>
-      <li><strong>Ploto</strong> – Metadata-rich media campaign platform. Role: Team Lead | Tech Stack: PHP, CodeIgniter | Team Size: 4–6</li>
-      <li><strong>CRM System</strong> – Lightweight customer relationship management solution. Tech Stack: Laravel, PHP | Team Size: 5</li>
-      <li><strong>MyCiti</strong> – Community management SaaS using React Native. Role: Developer | Team Size: 6+</li>
-    </ul>
+  <!-- Projects -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="https://via.placeholder.com/600x400" alt="Project 1">
+        <div class="project-content">
+          <h3>C-Note Tax Solutions</h3>
+          <p>A Canadian tax filing platform allowing users to submit returns online with secure payment and document upload.</p>
+          <a href="#">View Project</a>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/600x400" alt="Project 2">
+        <div class="project-content">
+          <h3>Ploto Media Platform</h3>
+          <p>Campaign management system for marketing teams to track, monitor, and report media campaigns efficiently.</p>
+          <a href="#">View Project</a>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/600x400" alt="Project 3">
+        <div class="project-content">
+          <h3>CRM SaaS Application</h3>
+          <p>Cloud-based Customer Relationship Management tool designed for small businesses to manage clients and sales.</p>
+          <a href="#">View Project</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Education -->
-  <section class="education">
-    <h2>Education</h2>
-    <ul>
-      <li>Integrated M.Sc. (IT) – Uka Tarsadia University, Bardoli, Surat (2015 – 2020)</li>
-    </ul>
+  <!-- Experience -->
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <h3>Senior PHP Developer | Quicoo Pvt Ltd</h3>
+        <p>2022 - Present</p>
+        <p>Leading backend development, optimizing APIs, and mentoring junior developers.</p>
+      </div>
+      <div class="timeline-item right">
+        <h3>PHP Developer | Kareva Techsol</h3>
+        <p>2020 - 2022</p>
+        <p>Developed scalable web applications, integrated third-party APIs, and maintained databases.</p>
+      </div>
+      <div class="timeline-item left">
+        <h3>Junior PHP Developer | Netsol IT Solution</h3>
+        <p>2018 - 2020</p>
+        <p>Worked on frontend & backend modules, debugging, and feature implementation.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Certifications & Achievements -->
-  <section class="certifications">
-    <h2>Certifications & Achievements</h2>
-    <ul>
-      <li>Cleared C, C++, Java Language Tests – IIT Bombay (Spoken Tutorial Project)</li>
-      <li>Completed Machine Learning Course – Tata Steel eLearning</li>
-      <li>Certified in CCOAI Office Automation & Internet</li>
-      <li>Participated in National Creativity Aptitude Test</li>
-      <li>Attended Seminars on Blockchain & Digital Marketing</li>
-    </ul>
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" action="mailto:pallavi.svta7@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
-  <!-- Interests -->
-  <section class="interests">
-    <h2>Interests</h2>
-    <p>Continuous Learning | Freelance Projects | Remote Collaboration</p>
-  </section>
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Pallavi Shrivastav | <a href="https://github.com/pallavi-shrivastav" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/pallavishrivastav" target="_blank">LinkedIn</a></p>
+  </footer>
 
 </body>
 </html>
